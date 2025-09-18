@@ -6,44 +6,45 @@ on:
   pull_request:
     branches: [main]
   
-  jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-        - name: Build Docker Images
-          run: docker-compose up -d --build
+      - name: Build Docker Images
+        run: docker-compose up -d --build
 
-        - name: Trivy scans for critical/high vulnerabilities
-          run: |
-            for img in $(docker images --format "{{.Repository}}:{{.Tag}}" | grep edgeupdate); do
-              trivy image $img --exit-code 1 --severity CRITICAL,HIGH || true
-            done
-        
-        - name: Upload Trivy reports
-          uses: actions/upload-artifact@v3
-          with:
-            name: trivy-reports
-            path: reports/
-  
-        - name: Generate SBOM
-          run: |
-            for img in $(docker images --format "{{.Repository}}:{{.Tag}}" | grep edgeupdate); do
-              syft $img -o json > sboms/sbom-${img//[:\/]/_}.json
-            done
+    # - name: Add some tests
+    #   run: ...
 
-        - name: Upload SBOMs
-          uses: actions/upload-artifact@v3
-          with:
-            name: sbom-reports
-            path: sboms/
-        
-      # - name: Add some tests
-      #   run: ...
+      - name: Trivy scans
+        run: |
+          for img in $(docker images --format "{{.Repository}}:{{.Tag}}" | grep edgeupdate); do
+            trivy image $img --exit-code 1 --severity CRITICAL,HIGH || true
+          done
 
-        - name: Deploy / OTA simulation
-          run: |
-            docker-compose down
-            docker-compose up -d --build
+      - name: Upload Trivy reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: trivy-reports
+          path: reports/
+
+      - name: Generate SBOM
+        run: |
+          mkdir -p sboms
+          for img in $(docker images --format "{{.Repository}}:{{.Tag}}" | grep edgeupdate); do
+            syft $img -o json > sboms/sbom-${img//[:\/]/_}.json
+          done
+
+      - name: Upload SBOMs
+        uses: actions/upload-artifact@v3
+        with:
+          name: sbom-reports
+          path: sboms/
+
+      - name: Deploy / OTA simulation
+        run: |
+          docker-compose down
+          docker-compose up -d --build
