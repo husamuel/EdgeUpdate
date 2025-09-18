@@ -52,14 +52,7 @@ jobs:
           image: edgeupdate_backend
           output-file: sboms/sbom-backend.json
           format: json
-
-
-      - name: Upload SBOMs
-        uses: actions/upload-artifact@v4
-        with:
-          name: sbom-reports
-          path: sboms/
-
+          artifact-name: sbom-reports
 
       - name: Deploy / OTA simulation
         run: |
