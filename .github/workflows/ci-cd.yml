@@ -47,11 +47,12 @@ jobs:
       # Syft Setup and artifact upload
 
       - name: Generate SBOM with Syft
-        uses: anchore/syft-action@v0.15.0
+        uses: anchore/sbom-action@v0.15.0
         with:
           image: edgeupdate_backend
-          output: sboms/sbom-backend.json
+          output-file: sboms/sbom-backend.json
           format: json
+
 
       - name: Upload SBOMs
         uses: actions/upload-artifact@v4
