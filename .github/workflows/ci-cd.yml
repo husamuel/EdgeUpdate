@@ -30,7 +30,7 @@ jobs:
     # Trivy Setup and artifact upload
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@v0.21.0
+        uses: aquasecurity/trivy-action@v0.22.0
         with:
           image-ref: edgeupdate-backend:latest
           format: 'json'
