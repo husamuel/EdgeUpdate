@@ -32,7 +32,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.22.0
         with:
-          image-ref: edgeupdate-backend:latest
+          image-ref: edgeupdate_backend
           format: 'json'
           output: 'reports/trivy-backend.json'
           severity: 'CRITICAL,HIGH'
@@ -49,7 +49,7 @@ jobs:
       - name: Generate SBOM with Syft
         uses: anchore/syft@v0.16.0
         with:
-          image: edgeupdate-backend:latest
+          image: backend:latest
           format: 'json'
           output: 'sboms/sbom-backend.json'
           extra-args: '--exclude "syft/file/test-fixtures/**"'
