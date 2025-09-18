@@ -2,10 +2,10 @@ global:
   scrape_interval: 5s
 
 scrape_configs:
-  - job_name: 'backend'
+  - job_name: "backend"
     static_configs:
-      - targets: ['backend:5000']
+      - targets: ["backend:5000"]
 
-  - job_name: 'devices'
+  - job_name: "devices"
     static_configs:
-      - targets: ['device_1:5000', 'device_2:5000', 'device_3:5000']
+      - targets: ["device_1:5000", "device_2:5000", "device_3:5000"]
