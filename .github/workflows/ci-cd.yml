@@ -17,6 +17,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
+      
+      - name: Install Syft
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh
+          sudo mv syft /usr/local/bin/
 
       - name: Build Docker Images
         run: docker-compose up -d --build
@@ -26,8 +31,9 @@ jobs:
 
       - name: Trivy scans
         run: |
+          mkdir -p reports
           for img in $(docker images --format "{{.Repository}}:{{.Tag}}" | grep edgeupdate); do
-            trivy image $img --exit-code 1 --severity CRITICAL,HIGH || true
+            trivy image $img --exit-code 1 --severity CRITICAL,HIGH -f json -o reports/trivy-${img//[:\/]/_}.json || true
           done
 
       - name: Upload Trivy reports
