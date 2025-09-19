@@ -97,7 +97,7 @@ The project is designed to demonstrate **DevOps skills**, including containeriza
 - [Flask Documentation](https://flask.palletsprojects.com/)  
 - [Prometheus Docs](https://prometheus.io/docs/)  
 - [Grafana Docs](https://grafana.com/docs/)  
-- [Trivy](https://aquasecurity.github.io/trivy/)  
+- [Trivy](https://trivy.dev/latest/docs/)
 - [Syft](https://github.com/anchore/syft)  
 - [GitHub Actions](https://github.com/features/actions)
 
