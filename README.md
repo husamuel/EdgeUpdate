@@ -34,33 +34,40 @@ The project is designed to demonstrate **DevOps skills**, including containeriza
 - **Syft** – SBOM generation  
 
 ---
-
 ## Getting Started
 
 ### Prerequisites
 
-To run this project locally, you will need:  
-
-- **Docker** & **Docker Compose** installed  
-- **Python 3.11+**  
-- **Git**  
+- Docker  
+- Docker Compose  
+- Python 3.11+  
+- Git  
 
 ### Installation
 
-1. Clone the repository and navigate to the project folder.  
-2. Build and run the simulated IoT devices using Docker Compose.  
-3. The backend API will start and be ready to manage devices and expose metrics.  
-
-Once running, the system allows you to check device status, trigger OTA updates, and monitor metrics via Prometheus and Grafana. The CI/CD pipeline automatically handles building, testing, scanning, generating SBOMs, and storing artifacts on each push to the main branch.
+1. Clone the repository:  
+   `git clone https://github.com/your_username/EdgeUpdate.git`  
+2. Navigate to the project folder:  
+   `cd EdgeUpdate`  
+3. Build the Docker containers:  
+   `docker-compose build`  
+4. Run the containers in detached mode:  
+   `docker-compose up -d`  
 
 ---
 
 ## Usage
 
-- Check device status via the backend API.  
-- Trigger OTA updates for simulated devices.  
-- View Prometheus metrics on Grafana dashboards.  
-- CI/CD pipeline automatically builds, tests, scans for vulnerabilities, generates SBOMs, and uploads **artifacts** on each push to the main branch.  
+1. Check backend API status:  
+   `curl http://localhost:5000/status`  
+2. Trigger OTA update for a device:  
+   `curl -X POST http://localhost:5000/update -H "Content-Type: application/json" -d '{"version": "1.1.0"}'`  
+3. Access Prometheus metrics via browser:  
+   `http://localhost:9090`  
+4. Access Grafana dashboard via browser:  
+   `http://localhost:3000`  
+
+> The CI/CD pipeline automatically builds, tests, scans for vulnerabilities, generates SBOMs, and uploads **artifacts** on each push to the main branch.
 
 ---
 
@@ -86,9 +93,11 @@ Once running, the system allows you to check device status, trigger OTA updates,
 
 ## Acknowledgments
 
-- Docker Documentation  
-- Flask Documentation  
-- Prometheus Docs  
-- Grafana Docs  
-- Trivy  
-- Syft  
+- [Docker Documentation](https://docs.docker.com/)  
+- [Flask Documentation](https://flask.palletsprojects.com/)  
+- [Prometheus Docs](https://prometheus.io/docs/)  
+- [Grafana Docs](https://grafana.com/docs/)  
+- [Trivy](https://aquasecurity.github.io/trivy/)  
+- [Syft](https://github.com/anchore/syft)  
+- [GitHub Actions](https://github.com/features/actions)
+
