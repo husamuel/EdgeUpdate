@@ -66,10 +66,21 @@ Once running, the system allows you to check device status, trigger OTA updates,
 
 ## Roadmap
 
-- Integrate real cameras and edge AI processing  
-- Add automatic alerts for unauthorized activity  
-- Migrate to Kubernetes for scalable device orchestration  
-- Integrate AWS S3 and Rekognition for image analysis  
+### ✅ Phase 1 – Device Simulation
+- Simular dispositivos IoT com **containers Docker** que representam câmeras e sensores  
+- Cada container roda um script Python que gera vídeos ou snapshots  
+- Backend central recebe dados e armazena, expondo **API e métricas**  
+
+### ⏳ Phase 2 – Centralized Video Processing
+- Containers enviam vídeos para o backend  
+- Backend processa vídeos e envia para **AWS Rekognition** para análise  
+- Backend gera alertas com base nos resultados da análise  
+
+### ⚡ Phase 3 – Real Devices
+- Substituir containers simulados por **câmeras reais**  
+- Backend recebe vídeos ou snapshots das câmeras físicas  
+- Backend processa e gera alertas, integrando métricas e logs
+
 
 ---
 
