@@ -1,4 +1,5 @@
 # EdgeUpdate – Simulated IoT DevOps Lab
+<img width="1190" height="611" alt="image" src="https://github.com/user-attachments/assets/153ddbb7-861f-4aa8-a29b-cf52965930ae" />
 
 ## Table of Contents
 - [About The Project](#about-the-project)
