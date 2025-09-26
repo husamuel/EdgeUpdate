@@ -69,25 +69,6 @@ The project is designed to demonstrate **DevOps skills**, including containeriza
 
 > The CI/CD pipeline automatically builds, tests, scans for vulnerabilities, generates SBOMs, and uploads **artifacts** on each push to the main branch.
 
----
-
-## Roadmap
-
-### ✅ Phase 1 – Device Simulation
-- Simular dispositivos IoT com **containers Docker** que representam câmeras e sensores  
-- Cada container roda um script Python que gera vídeos ou snapshots  
-- Backend central recebe dados e armazena, expondo **API e métricas**  
-
-### ⏳ Phase 2 – Centralized Video Processing
-- Containers enviam vídeos para o backend  
-- Backend processa vídeos e envia para **AWS Rekognition** para análise  
-- Backend gera alertas com base nos resultados da análise  
-
-### ⚡ Phase 3 – Real Devices
-- Substituir containers simulados por **câmeras reais**  
-- Backend recebe vídeos ou snapshots das câmeras físicas  
-- Backend processa e gera alertas, integrando métricas e logs
-
 
 ---
 
